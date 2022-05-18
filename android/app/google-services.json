@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "467993485851",
+    "project_id": "car-wash-852c4",
+    "storage_bucket": "car-wash-852c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467993485851:android:feb04cd7bcc8f8c425cebe",
+        "android_client_info": {
+          "package_name": "com.redskulldeveloper.carwash.lavador"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467993485851-m1g748plbf08vo4gi2754seltmoord2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8Qdv56Zs2hSHjXgKon-4P2jdMD0hX1YU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467993485851-m1g748plbf08vo4gi2754seltmoord2p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "467993485851-jqcj40ro0g4d866d60jp5gu48eggo3g4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.redskulldeveloper.carwash.uberCloneFlutter"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467993485851:android:c24a34caf42d52eb25cebe",
+        "android_client_info": {
+          "package_name": "com.redskulldeveloper.carwash.uber_clone_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467993485851-8pfcff3gj6mo93uib947afhq4j784r8f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.redskulldeveloper.carwash.uber_clone_flutter",
+            "certificate_hash": "1143822112710bb12e7961383f39fb5af32b4270"
+          }
+        },
+        {
+          "client_id": "467993485851-cdtiv8o7u5r7bjsi2e1hnj2e8mn3p0vh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.redskulldeveloper.carwash.uber_clone_flutter",
+            "certificate_hash": "37b568bbd71f2d81bed62c4e56d509e9e073e377"
+          }
+        },
+        {
+          "client_id": "467993485851-m1g748plbf08vo4gi2754seltmoord2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8Qdv56Zs2hSHjXgKon-4P2jdMD0hX1YU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467993485851-m1g748plbf08vo4gi2754seltmoord2p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "467993485851-jqcj40ro0g4d866d60jp5gu48eggo3g4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.redskulldeveloper.carwash.uberCloneFlutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
