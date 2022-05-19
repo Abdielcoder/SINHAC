@@ -67,7 +67,7 @@ class DeliveryOrdersMapController {
     deliveryMarker = await createMarkerFromAsset('assets/img/pinwash.png');
     homeMarker = await createMarkerFromAsset('assets/img/carrowash.png');
 
-    socket = IO.io('http://${Environment.API_DELIVERY}/orders/delivery', <String, dynamic> {
+    socket = IO.io('http://${Environment.API_DELIVERY}/orders/status', <String, dynamic> {
       'transports': ['websocket'],
       'autoConnect': false
     });
@@ -189,7 +189,8 @@ class DeliveryOrdersMapController {
   }
 
   void updateOnWay() async {
-
+    print("Entre al update ONWAY");
+    emitStatus('ARRIVE');
 
   }
 
@@ -423,5 +424,12 @@ class DeliveryOrdersMapController {
     return await Geolocator.getCurrentPosition();
   }
 
-
+  //SEND OBJECT DATA TO SOKECT LISTENER
+  void emitStatus(String status) {
+    socket.emit('status', {
+      'id_order': order.id,
+      'statusOrder': status,
+      // 'lng': _position.longitude,
+    });
+  }
 }
