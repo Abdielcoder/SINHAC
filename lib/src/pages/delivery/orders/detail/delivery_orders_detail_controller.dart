@@ -130,7 +130,7 @@ class DeliveryOrdersDetailController {
   //SEND OBJECT DATA TO SOKECT LISTENER
   void emitStatus(String status) {
     socket.emit('status', {
-      'id_order': '1',
+      'id_order': 1,
        'statusOrder': status,
       // 'lng': _position.longitude,
     });

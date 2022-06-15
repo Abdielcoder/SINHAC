@@ -75,8 +75,13 @@ class DeliveryOrdersMapController {
       'transports': ['websocket'],
       'autoConnect': false
     });
-
     socket.connect();
+    // socket = IO.io('http://${Environment.API_DELIVERY}/orders/lat', <String, dynamic> {
+    //   'transports': ['websocket'],
+    //   'autoConnect': false
+    // });
+
+
 
 
     user = User.fromJson(await _sharedPref.read('user'));
@@ -136,13 +141,13 @@ class DeliveryOrdersMapController {
     await _ordersProvider.updateLatLng(order);
   }
 
-  // void emitPosition() {
-  //   socket.emit('position', {
-  //     'id_order': 1,
-  //     'lat': _position.latitude,
-  //     'lng': _position.longitude,
-  //   });
-  // }
+  void emitPosition() {
+    socket.emit('lat', {
+      'id_order': 1,
+      'lat': _position.latitude,
+      'lng': _position.longitude,
+    });
+  }
 
   void isCloseToDeliveryPosition() {
     _distanceBetween = Geolocator.distanceBetween(
@@ -195,13 +200,13 @@ class DeliveryOrdersMapController {
   }
 
   void updateOnWay() async {
-    print("Entre al update ONWAY");
+    print("Entre al update ARRIVE");
     emitStatus('ARRIVE');
 
   }
 
   void updateFinish() async {
-    print("Entre al update ONWAY");
+    print("Entre al update FINISH");
     emitStatus('FINISH');
 
   }
@@ -359,15 +364,15 @@ class DeliveryOrdersMapController {
         _position = position;
 
        // emitPosition();
-       emitStatus('TRACKING');
-        addMarker(
-            'delivery',
-            _position.latitude,
-            _position.longitude,
-            'Tu posicion',
-            '',
-            deliveryMarker
-        );
+       // emitStatus('TRACKING');
+       //  addMarker(
+       //      'delivery',
+       //      _position.latitude,
+       //      _position.longitude,
+       //      'Tu posicion',
+       //      '',
+       //      deliveryMarker
+       //  );
 
         animateCameraToPosition(_position.latitude, _position.longitude);
         isCloseToDeliveryPosition();
@@ -437,13 +442,15 @@ class DeliveryOrdersMapController {
   }
 
   //SEND OBJECT DATA TO SOKECT LISTENER
+
+
   void emitStatus(String status) {
     socket.emit('status', {
       'id_order': 1,
       'statusOrder': status,
-      'lat': _position.latitude,
-      'lng': _position.longitude,
       // 'lng': _position.longitude,
     });
   }
+
+
 }
