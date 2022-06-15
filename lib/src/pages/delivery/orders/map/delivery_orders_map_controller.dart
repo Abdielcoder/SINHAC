@@ -75,14 +75,15 @@ class DeliveryOrdersMapController {
       'transports': ['websocket'],
       'autoConnect': false
     });
-    socket.connect();
+
+
     // socket = IO.io('http://${Environment.API_DELIVERY}/orders/lat', <String, dynamic> {
     //   'transports': ['websocket'],
     //   'autoConnect': false
     // });
 
 
-
+    socket.connect();
 
     user = User.fromJson(await _sharedPref.read('user'));
     _ordersProvider.init(context, user);
@@ -141,13 +142,16 @@ class DeliveryOrdersMapController {
     await _ordersProvider.updateLatLng(order);
   }
 
-  void emitPosition() {
-    socket.emit('lat', {
-      'id_order': 1,
-      'lat': _position.latitude,
-      'lng': _position.longitude,
-    });
-  }
+  // void emitStatus() {
+  //   socket.emit('lat', {
+  //     'id_order': 1,
+  //     'statusOrder': 'TRACKING',
+  //     'lat': _position.latitude,
+  //     'lng': _position.longitude,
+  //   });
+  // }
+
+
 
   void isCloseToDeliveryPosition() {
     _distanceBetween = Geolocator.distanceBetween(
@@ -363,16 +367,8 @@ class DeliveryOrdersMapController {
 
         _position = position;
 
-       // emitPosition();
-       // emitStatus('TRACKING');
-       //  addMarker(
-       //      'delivery',
-       //      _position.latitude,
-       //      _position.longitude,
-       //      'Tu posicion',
-       //      '',
-       //      deliveryMarker
-       //  );
+       //emitPosition();
+        emitStatus('TRACKING');
 
         animateCameraToPosition(_position.latitude, _position.longitude);
         isCloseToDeliveryPosition();
@@ -448,6 +444,8 @@ class DeliveryOrdersMapController {
     socket.emit('status', {
       'id_order': 1,
       'statusOrder': status,
+      'lat': _position.latitude,
+      'lng': _position.longitude,
       // 'lng': _position.longitude,
     });
   }
