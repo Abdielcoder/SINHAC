@@ -92,7 +92,7 @@ class DeliveryOrdersDetailController {
   void updateOrder() async {
 
     // order.idClient = idClient;
-
+  print('#@#@#@#@#@#'+order.status.toString());
     if (order.status == 'DESPACHADO') {
       ResponseApi responseApi = await _ordersProvider.updateToOnTheWay(order);
       emitStatus('ONWAY');
@@ -130,7 +130,7 @@ class DeliveryOrdersDetailController {
   //SEND OBJECT DATA TO SOKECT LISTENER
   void emitStatus(String status) {
     socket.emit('status', {
-      'id_order': order.id,
+      'id_order': '1',
        'statusOrder': status,
       // 'lng': _position.longitude,
     });

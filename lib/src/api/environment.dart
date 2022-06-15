@@ -3,7 +3,7 @@ import 'package:lavador/src/models/mercado_pago_credentials.dart';
 
 class Environment {
 
-  static const String API_DELIVERY = "18.219.24.140:3333";
+  static const String API_DELIVERY = "3.217.149.82:3333";
   static const String API_KEY_MAPS = "AIzaSyAxip-78Cucl0wl2x7gF4F4MP_UhtC7iDw";
   //
   static MercadoPagoCredentials mercadoPagoCredentials = MercadoPagoCredentials(

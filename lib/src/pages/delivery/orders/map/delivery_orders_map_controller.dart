@@ -60,18 +60,24 @@ class DeliveryOrdersMapController {
 
    IO.Socket socket;
 
+
   Future init(BuildContext context, Function refresh) async {
     this.context = context;
     this.refresh = refresh;
+
     order = Order.fromJson(ModalRoute.of(context).settings.arguments as Map<String, dynamic>);
     deliveryMarker = await createMarkerFromAsset('assets/img/pinwash.png');
     homeMarker = await createMarkerFromAsset('assets/img/carrowash.png');
+
+
 
     socket = IO.io('http://${Environment.API_DELIVERY}/orders/status', <String, dynamic> {
       'transports': ['websocket'],
       'autoConnect': false
     });
+
     socket.connect();
+
 
     user = User.fromJson(await _sharedPref.read('user'));
     _ordersProvider.init(context, user);
@@ -130,13 +136,13 @@ class DeliveryOrdersMapController {
     await _ordersProvider.updateLatLng(order);
   }
 
-  void emitPosition() {
-    socket.emit('position', {
-      'id_order': order.id,
-      'lat': _position.latitude,
-      'lng': _position.longitude,
-    });
-  }
+  // void emitPosition() {
+  //   socket.emit('position', {
+  //     'id_order': 1,
+  //     'lat': _position.latitude,
+  //     'lng': _position.longitude,
+  //   });
+  // }
 
   void isCloseToDeliveryPosition() {
     _distanceBetween = Geolocator.distanceBetween(
@@ -194,10 +200,16 @@ class DeliveryOrdersMapController {
 
   }
 
+  void updateFinish() async {
+    print("Entre al update ONWAY");
+    emitStatus('FINISH');
+
+  }
+
 
   void updateToDelivered() async {
       llegada = true;
-
+      updateFinish();
       ResponseApi responseApi = await _ordersProvider.updateToDelivered(order);
       if (responseApi.success) {
         sendNotificationFinalizar(order.client.notificationToken);
@@ -346,8 +358,8 @@ class DeliveryOrdersMapController {
 
         _position = position;
 
-        emitPosition();
-
+       // emitPosition();
+       emitStatus('TRACKING');
         addMarker(
             'delivery',
             _position.latitude,
@@ -427,8 +439,10 @@ class DeliveryOrdersMapController {
   //SEND OBJECT DATA TO SOKECT LISTENER
   void emitStatus(String status) {
     socket.emit('status', {
-      'id_order': order.id,
+      'id_order': 1,
       'statusOrder': status,
+      'lat': _position.latitude,
+      'lng': _position.longitude,
       // 'lng': _position.longitude,
     });
   }
