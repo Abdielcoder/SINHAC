@@ -34,6 +34,7 @@ class DeliveryOrdersListController {
   Position _position;
   StreamSubscription _positionStream;
 
+  String idCliente;
   String addressName;
   LatLng addressLatLng;
   double latSockectString;
@@ -55,6 +56,7 @@ class DeliveryOrdersListController {
 
     socket.on('status/${idStatusOrder}', (data) {
       print('VLIX: ${data}');
+      idCliente = data['idClient'];
       latSockectString = data['lat'];
       lngSockectString = data['lng'];
       print('-------- KUGX12 $latSockectString----------');
@@ -70,7 +72,7 @@ class DeliveryOrdersListController {
 
   Future<List<Order>> getOrders(String status) async {
 
-    return await _ordersProvider.getByDeliveryAndStatus(user.id, status);
+    return await _ordersProvider.getByClientAndStatus(idCliente, status);
     refresh();
   }
 
@@ -137,7 +139,7 @@ class DeliveryOrdersListController {
     if (_distanceBetween <= 5000 && !isClose) {
       print('-------- KUGX 15 ${_distanceBetween} ----------');
      // print('-------- TOKEN ${order.client.notificationToken} ----------');
-
+      getOrders('DESPACHADO');
       isClose = true;
     }
 
