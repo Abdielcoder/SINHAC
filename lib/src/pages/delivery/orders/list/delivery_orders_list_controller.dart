@@ -29,24 +29,20 @@ class DeliveryOrdersListController {
     this.refresh = refresh;
     user = User.fromJson(await _sharedPref.read('user'));
     openDrawer();
-    // socket = IO.io('http://${Environment.API_DELIVERY}/orders/delivery', <String, dynamic> {
-    //   'transports': ['websocket'],
-    //   'autoConnect': false
-    // });
-    // socket.connect();
-    // socket.on('position/${order.id}', (data) {
-    //   print('DATA EMITIDA: ${data}');
-    //
-    //   addMarker(
-    //       'delivery',
-    //       data['lat'],
-    //       data['lng'],
-    //       'Tu Lavador',
-    //       '',
-    //       deliveryMarker
-    //   );
-    //
-    // });
+
+
+    socket = IO.io('http://${Environment.API_DELIVERY}/orders/status', <String, dynamic> {
+      'transports': ['websocket'],
+      'autoConnect': false
+    });
+
+    socket.connect();
+    int idStatusOrder =1;
+
+    socket.on('status/${idStatusOrder}', (data) {
+      print('VLIX: ${data}');
+
+    });
 
     _ordersProvider.init(context, user);
     refresh();
@@ -93,5 +89,7 @@ class DeliveryOrdersListController {
     Navigator.pushNamedAndRemoveUntil(context, 'roles', (route) => false);
     refresh();
   }
-
+  void dispose() {
+    socket?.disconnect();
+  }
 }

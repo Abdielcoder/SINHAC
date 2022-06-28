@@ -227,8 +227,6 @@ class DeliveryOrdersMapController {
         Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/list', (route) => false);
 
       }
-
-
   }
 
   Future<void> setPolylines(LatLng from, LatLng to) async {
@@ -303,12 +301,7 @@ class DeliveryOrdersMapController {
 
       if (address != null) {
         if (address.length > 0) {
-          String direction = address[0].thoroughfare;
-          String street = address[0].subThoroughfare;
-          String city = address[0].locality;
-          String department = address[0].administrativeArea;
-          String country = address[0].country;
-          addressName = '$direction #$street, $city, $department';
+
           addressLatLng = new LatLng(lat, lng);
           // print('LAT: ${addressLatLng.latitude}');
           // print('LNG: ${addressLatLng.longitude}');

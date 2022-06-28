@@ -98,11 +98,11 @@ class _DeliveryOrdersListPageState extends State<DeliveryOrdersListPage> with Wi
                       );
                     }
                     else {
-                      return NoDataWidget(text: 'No hay ordenes');
+                      return NoDataWidget(text: 'No hay ordesssnes');
                     }
                   }
                   else {
-                    return NoDataWidget(text: 'No hay ordenes');
+                    return NoDataWidget(text: 'No hay ordsssenes');
                   }
                 }
             );
