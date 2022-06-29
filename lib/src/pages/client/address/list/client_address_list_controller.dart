@@ -116,7 +116,7 @@ class ClientAddressListController {
     List<Product> selectedProducts = Product.fromJsonList(await _sharedPref.read('order')).toList;
     Order order = new Order(
         idClient: user.id,
-        idAddress: a.id,
+        id_address: a.id,
         products: selectedProducts
     );
     ResponseApi responseApi = await _ordersProvider.createOrderCash(order);

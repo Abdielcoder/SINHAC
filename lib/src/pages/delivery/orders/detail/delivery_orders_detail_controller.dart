@@ -94,6 +94,7 @@ class DeliveryOrdersDetailController {
     // order.idClient = idClient;
   print('#@#@#@#@#@#'+order.status.toString());
     if (order.status == 'DESPACHADO') {
+
       ResponseApi responseApi = await _ordersProvider.updateToOnTheWay(order);
       emitStatus('ONWAY');
       MySnackbar.show(context, responseApi.message);

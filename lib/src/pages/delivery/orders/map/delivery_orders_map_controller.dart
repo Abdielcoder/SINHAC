@@ -137,6 +137,7 @@ class DeliveryOrdersMapController {
 
 
   void saveLocation() async {
+    order.idDelivery = user.id;
     order.lat = _position.latitude;
     order.lng = _position.longitude;
     await _ordersProvider.updateLatLng(order);
