@@ -71,17 +71,17 @@ class DeliveryOrdersEntregadoController {
     refresh();
   }
 
-  Future<List<Order>> getOrders(String status) async {
-
-    return await _ordersProvider.getByClientAndStatus(idCliente, status);
-    refresh();
-  }
-
   // Future<List<Order>> getOrders(String status) async {
   //
-  //   return await _ordersProvider.getByDeliveryAndStatus("2", status);
+  //   return await _ordersProvider.getByClientAndStatus(idCliente, status);
   //   refresh();
   // }
+
+  Future<List<Order>> getOrders(String status) async {
+
+    return await _ordersProvider.getByDeliveryAndStatus(user.id, status);
+    refresh();
+  }
 
   void openBottomSheet(Order order) async {
 
@@ -151,7 +151,7 @@ class DeliveryOrdersEntregadoController {
     if (_distanceBetween <= 5000 && !isClose) {
       print('-------- KUGX 15 ${_distanceBetween} ----------');
      // print('-------- TOKEN ${order.client.notificationToken} ----------');
-      getOrders('DESPACHADO');
+      //getOrders('DESPACHADO');
       isClose = true;
     }
 
