@@ -128,6 +128,10 @@ class DeliveryOrdersEntregadoController {
     Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/entregado', (route) => false);
     refresh();
   }
+  void goGanancias() {
+    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/total', (route) => false);
+    refresh();
+  }
 
   void dispose() {
     socket?.disconnect();

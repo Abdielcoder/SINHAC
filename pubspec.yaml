@@ -108,6 +108,7 @@ flutter:
 
   assets:
     - assets/img/
+    - assets/images/
     - assets/json/
   fonts:
     - family: NimbusSans

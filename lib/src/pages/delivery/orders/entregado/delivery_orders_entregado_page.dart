@@ -300,6 +300,12 @@ class _DeliveryOrdersEntregadoPagePageState extends State<DeliveryOrdersEntregad
             trailing: Icon(Icons.check_circle),
           ),
           ListTile(
+            onTap: _con.goGanancias,
+            title: Text('Ganancias'),
+            trailing: Icon(Icons.account_balance_wallet),
+
+          ),
+          ListTile(
             onTap: _con.logout,
             title: Text('Cerrar sesion'),
             trailing: Icon(Icons.power_settings_new),
