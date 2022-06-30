@@ -126,6 +126,10 @@ class DeliveryOrdersListController {
     Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/entregado', (route) => false);
     refresh();
   }
+  void goCancelado() {
+    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/cancelado', (route) => false);
+    refresh();
+  }
   void goGanancias() {
     Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/total', (route) => false);
     refresh();

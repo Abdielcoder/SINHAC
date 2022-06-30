@@ -299,6 +299,12 @@ class _DeliveryOrdersListPageState extends State<DeliveryOrdersListPage> with Wi
             trailing: Icon(Icons.check_circle),
           ),
           ListTile(
+            onTap: _con.goCancelado,
+            title: Text('Cancelado'),
+            trailing: Icon(Icons.no_meeting_room_outlined),
+
+          ),
+          ListTile(
             onTap: _con.goGanancias,
             title: Text('Ganancias'),
             trailing: Icon(Icons.account_balance_wallet),

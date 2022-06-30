@@ -5,19 +5,21 @@ import 'package:lavador/src/pages/delivery/orders/entregado/delivery_orders_lent
 import 'package:lavador/src/utils/my_colors.dart';
 import 'package:lavador/src/widgets/no_data_widget.dart';
 
+import 'delivery_orders_cancelado_controller.dart';
 
 
 
-class DeliveryOrdersEntregadoPage extends StatefulWidget {
-  const DeliveryOrdersEntregadoPage({Key key}) : super(key: key);
+
+class DeliveryOrdersCanceladoPage extends StatefulWidget {
+  const DeliveryOrdersCanceladoPage({Key key}) : super(key: key);
 
   @override
-  _DeliveryOrdersEntregadoPagePageState createState() => _DeliveryOrdersEntregadoPagePageState();
+  _DeliveryOrdersCanceladoPageState createState() => _DeliveryOrdersCanceladoPageState();
 }
 
-class _DeliveryOrdersEntregadoPagePageState extends State<DeliveryOrdersEntregadoPage> with WidgetsBindingObserver{
+class _DeliveryOrdersCanceladoPageState extends State<DeliveryOrdersCanceladoPage> with WidgetsBindingObserver{
 
-  DeliveryOrdersEntregadoController _con = new DeliveryOrdersEntregadoController();
+  DeliveryOrdersCanceladoController _con = new DeliveryOrdersCanceladoController();
 
   @override
   void initState() {
@@ -303,6 +305,7 @@ class _DeliveryOrdersEntregadoPagePageState extends State<DeliveryOrdersEntregad
             onTap: _con.goCancelado,
             title: Text('Cancelado'),
             trailing: Icon(Icons.no_meeting_room_outlined),
+
           ),
           ListTile(
             onTap: _con.goGanancias,
@@ -310,6 +313,7 @@ class _DeliveryOrdersEntregadoPagePageState extends State<DeliveryOrdersEntregad
             trailing: Icon(Icons.account_balance_wallet),
 
           ),
+
           ListTile(
             onTap: _con.logout,
             title: Text('Cerrar sesion'),

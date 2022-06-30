@@ -15,7 +15,7 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 import '../../../../api/environment.dart';
 
-class DeliveryOrdersEntregadoController {
+class DeliveryOrdersCanceladoController {
 
   BuildContext context;
   SharedPref _sharedPref = new SharedPref();
@@ -24,7 +24,7 @@ class DeliveryOrdersEntregadoController {
   User user;
 
   //List<String> status = ['DESPACHADO', 'EN CAMINO', 'ENTREGADO'];
-  List<String> status = ['ENTREGADO'];
+  List<String> status = ['CANCEL'];
   OrdersProvider _ordersProvider = new OrdersProvider();
   IO.Socket socket;
   bool isUpdated;
@@ -128,6 +128,7 @@ class DeliveryOrdersEntregadoController {
     Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/entregado', (route) => false);
     refresh();
   }
+
   void goCancelado() {
     Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/cancelado', (route) => false);
     refresh();
