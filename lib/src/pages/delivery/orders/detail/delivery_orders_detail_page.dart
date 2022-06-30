@@ -158,6 +158,8 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
                 Text(
                   product?.name ?? '',
                   style: TextStyle(
+                      fontSize: 40,
+                    fontFamily: 'Roboto',
                     fontWeight: FontWeight.bold
                   ),
                 ),
@@ -165,7 +167,7 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
                 Text(
                   'Cantidad: ${product.quantity}',
                   style: TextStyle(
-                      fontSize: 13
+                      fontSize: 30
                   ),
                 ),
               ],
@@ -179,19 +181,19 @@ class _DeliveryOrdersDetailPageState extends State<DeliveryOrdersDetailPage> {
 
   Widget _imageProduct(Product product) {
     return Container(
-      width: 50,
-      height: 50,
+      width: 250,
+      height: 250,
       padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: BorderRadius.all(Radius.circular(50)),
           color: Colors.grey[200]
       ),
       child: FadeInImage(
         image: product.image1 != null
-            ? NetworkImage(product.image1)
+            ? NetworkImage('https://static.wixstatic.com/media/b367ba_dcf3d60a8f0b4c018f9ed227b6abd8a1~mv2.png/v1/fill/w_400,h_288,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Elements%20_Car%20illustration%201.png')
             : AssetImage('assets/img/no-image.png'),
         fit: BoxFit.contain,
-        fadeInDuration: Duration(milliseconds: 50),
+        fadeInDuration: Duration(milliseconds: 250),
         placeholder: AssetImage('assets/img/no-image.png'),
       ),
     );
