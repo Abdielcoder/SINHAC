@@ -53,60 +53,70 @@ class _DeliveryOrdersListPageState extends State<DeliveryOrdersListPage> with Wi
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: _con.status?.length,
-      child: Scaffold(
-        key: _con.key,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(100),
-          child: AppBar(
-            automaticallyImplyLeading: false,
-            backgroundColor: Colors.white,
-            flexibleSpace: Column(
-              children: [
-                SizedBox(height: 40),
-                _menuDrawer(),
-              ],
-            ),
-            bottom: TabBar(
-              indicatorColor: MyColors.primaryColor,
-              labelColor: Colors.black,
-              unselectedLabelColor: Colors.grey[400],
-              isScrollable: true,
-              tabs: List<Widget>.generate(_con.status.length, (index) {
-                return Tab(
-                  child: Text(_con.status[index] ?? ''),
-                );
-              }),
+      child: Container(
+        child: Scaffold(
+          key: _con.key,
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(100),
+            child: AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: Colors.white,
+              flexibleSpace: Column(
+                children: [
+                  SizedBox(height: 40),
+                  _menuDrawer(),
+                ],
+              ),
+              bottom: TabBar(
+                indicatorColor: MyColors.primaryColor,
+                labelColor: Colors.black,
+                unselectedLabelColor: Colors.grey[400],
+                isScrollable: true,
+                tabs: List<Widget>.generate(_con.status.length, (index) {
+                  return Tab(
+                    child: Text(_con.status[index] ?? ''),
+                  );
+                }),
+              ),
             ),
           ),
-        ),
-        drawer: _drawer(),
-        body: TabBarView(
-          children: _con.status.map((String status) {
-            return FutureBuilder(
-                future: _con.getOrders(status),
-                builder: (context, AsyncSnapshot<List<Order>> snapshot) {
+          drawer: _drawer(),
+          body: TabBarView(
+            children: _con.status.map((String status) {
+              return FutureBuilder(
+                  future: _con.getOrders(status),
+                  builder: (context, AsyncSnapshot<List<Order>> snapshot) {
 
-                  if (snapshot.hasData) {
+                    if (snapshot.hasData) {
 
-                    if (snapshot.data.length > 0) {
-                      return ListView.builder(
-                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                          itemCount: snapshot.data?.length ?? 0,
-                          itemBuilder: (_, index) {
-                            return _cardOrder(snapshot.data[index]);
-                          }
-                      );
+                      if (snapshot.data.length > 0) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: ExactAssetImage("assets/img/encamino.jpg"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: ListView.builder(
+                              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                              itemCount: snapshot.data?.length ?? 0,
+                              itemBuilder: (_, index) {
+                                return _cardOrder(snapshot.data[index]);
+                              }
+                          ),
+                        );
+                      }
+                      else {
+                        return NoDataWidget(text: 'No hay ordesssnes');
+                      }
                     }
                     else {
-                      return NoDataWidget(text: 'No hay ordesssnes');
+                      return NoDataWidget(text: 'No hay ordsssenes');
                     }
                   }
-                  else {
-                    return NoDataWidget(text: 'No hay ordsssenes');
-                  }
-                }
-            );
-          }).toList(),
+              );
+            }).toList(),
+          ),
         ),
       ),
     );
@@ -278,6 +288,16 @@ class _DeliveryOrdersListPageState extends State<DeliveryOrdersListPage> with Wi
             title: Text('Seleccionar rol'),
             trailing: Icon(Icons.person_outline),
           ) : Container() : Container(),
+          ListTile(
+            onTap: _con.goInicio,
+            title: Text('Inicio'),
+            trailing: Icon(Icons.all_inbox),
+          ),
+          ListTile(
+            onTap: _con.goEntregado,
+            title: Text('Entregado'),
+            trailing: Icon(Icons.check_circle),
+          ),
           ListTile(
             onTap: _con.logout,
             title: Text('Cerrar sesion'),

@@ -75,10 +75,10 @@ class RestaurantOrdersDetailController {
   void updateOrder() async {
     if (idDelivery != null) {
 
-      order.idDelivery = idDelivery;
+      order.id_delivery = idDelivery;
       ResponseApi responseApi = await _ordersProvider.updateToDispatched(order);
 
-      User deliveryUser = await _usersProvider.getById(order.idDelivery);
+      User deliveryUser = await _usersProvider.getById(order.id_delivery);
       sendNotification(deliveryUser.notificationToken);
       emitLavador(deliveryUser.id);
 

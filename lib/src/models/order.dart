@@ -13,7 +13,7 @@ class Order {
 
   String id;
   String idClient;
-  String idDelivery;
+  String id_delivery;
   String id_address;
   String status;
   double lat;
@@ -28,7 +28,7 @@ class Order {
   Order({
     this.id,
     this.idClient,
-    this.idDelivery,
+    this.id_delivery,
     this.id_address,
     this.status,
     this.lat,
@@ -43,7 +43,7 @@ class Order {
   factory Order.fromJson(Map<String, dynamic> json) => Order(
       id: json["id"] is int ? json["id"].toString() : json['id'],
       idClient: json["id_client"],
-      idDelivery: json["idDelivery"],
+      id_delivery: json["id_delivery"],
       id_address: json["id_address"],
       status: json["status"],
       lat: json["lat"] is String ? double.parse(json["lat"]) : json["lat"],
@@ -66,7 +66,7 @@ class Order {
   Map<String, dynamic> toJson() => {
     "id": id,
     "id_client": idClient,
-    "idDelivery": idDelivery,
+    "id_delivery": id_delivery,
     "id_address": id_address,
     "status": status,
     "lat": lat,

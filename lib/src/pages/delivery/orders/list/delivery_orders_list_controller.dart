@@ -23,7 +23,8 @@ class DeliveryOrdersListController {
   Function refresh;
   User user;
 
-  List<String> status = ['DESPACHADO', 'EN CAMINO', 'ENTREGADO'];
+  //List<String> status = ['DESPACHADO', 'EN CAMINO', 'ENTREGADO'];
+  List<String> status = ['DESPACHADO'];
   OrdersProvider _ordersProvider = new OrdersProvider();
   IO.Socket socket;
   bool isUpdated;
@@ -76,6 +77,12 @@ class DeliveryOrdersListController {
     refresh();
   }
 
+  // Future<List<Order>> getOrders(String status) async {
+  //
+  //   return await _ordersProvider.getByDeliveryAndStatus("2", status);
+  //   refresh();
+  // }
+
   void openBottomSheet(Order order) async {
 
     isUpdated = await showMaterialModalBottomSheet(
@@ -111,15 +118,17 @@ class DeliveryOrdersListController {
     Navigator.pushNamedAndRemoveUntil(context, 'roles', (route) => false);
     refresh();
   }
+  void goInicio() {
+    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/list', (route) => false);
+    refresh();
+  }
+  void goEntregado() {
+    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/entregado', (route) => false);
+    refresh();
+  }
   void dispose() {
     socket?.disconnect();
   }
-
-  // void saveLocation() async {
-  //   order.lat = _position.latitude;
-  //   order.lng = _position.longitude;
-  //   await _ordersProvider.updateLatLng(order);
-  // }
 
   void isCloseToDeliveryPosition() {
     print('-------- KUGX 6  ---------- $_position');

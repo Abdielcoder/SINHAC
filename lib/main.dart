@@ -13,6 +13,7 @@ import 'package:lavador/src/pages/client/payments/stripe/stripe_existing_cards_p
 import 'package:lavador/src/pages/client/payments/stripe/stripe_store_cards_page.dart';
 import 'package:lavador/src/pages/client/products/list/client_products_list_page.dart';
 import 'package:lavador/src/pages/client/update/client_update_page.dart';
+import 'package:lavador/src/pages/delivery/orders/entregado/delivery_orders_entregado_page.dart';
 import 'package:lavador/src/pages/delivery/orders/finish/finish_clean_page.dart';
 import 'package:lavador/src/pages/delivery/orders/list/delivery_orders_list_page.dart';
 import 'package:lavador/src/pages/delivery/orders/map/delivery_orders_map_page.dart';
@@ -92,6 +93,7 @@ class _MyappState extends State<MyApp> {
         'restaurant/categories/create' : (BuildContext context) => RestaurantCategoriesCreatePage(),
         'restaurant/products/create' : (BuildContext context) => RestaurantProductsCreatePage(),
         'delivery/orders/list': (BuildContext context) => DeliveryOrdersListPage(),
+        'delivery/orders/entregado': (BuildContext context) => DeliveryOrdersEntregadoPage(),
         'delivery/orders/map' : (BuildContext context) => DeliveryOrdersMapPage(),
         'client/payments/stripe' : (BuildContext context) => StripeStoreCardPage(),
         'client/payments/stripe/existingcards' : (BuildContext context) => ExistingCardsPage(),

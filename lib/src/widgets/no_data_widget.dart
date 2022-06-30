@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class NoDataWidget extends StatelessWidget {
 
@@ -9,17 +12,23 @@ class NoDataWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 60),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset('assets/img/no_items.png'),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 50),
-            child: Text(text)
-          )
-        ],
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: ExactAssetImage("assets/img/encamino.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: ClipRRect( // make sure we apply clip it properly
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+
+          child: Lottie.asset(
+              'assets/json/wait2.json',
+              fit: BoxFit.fill
+          ),
+        ),
       ),
     );
   }
 }
+
