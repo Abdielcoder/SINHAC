@@ -15,6 +15,8 @@ class Order {
   String idClient;
   String id_delivery;
   String id_address;
+  String ventas;
+  String name;
   String status;
   double lat;
   double lng;
@@ -30,6 +32,8 @@ class Order {
     this.idClient,
     this.id_delivery,
     this.id_address,
+    this.ventas,
+    this.name,
     this.status,
     this.lat,
     this.lng,
@@ -44,6 +48,8 @@ class Order {
       id: json["id"] is int ? json["id"].toString() : json['id'],
       idClient: json["id_client"],
       id_delivery: json["id_delivery"],
+      ventas: json["ventas"],
+      name: json["name"],
       id_address: json["id_address"],
       status: json["status"],
       lat: json["lat"] is String ? double.parse(json["lat"]) : json["lat"],
@@ -67,6 +73,8 @@ class Order {
     "id": id,
     "id_client": idClient,
     "id_delivery": id_delivery,
+    "ventas": ventas,
+    "name":name,
     "id_address": id_address,
     "status": status,
     "lat": lat,

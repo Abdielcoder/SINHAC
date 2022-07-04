@@ -11,6 +11,7 @@ import '../../../../utils/shared_pref.dart';
 
 class RequestTotalOntroller{
   BuildContext context;
+  GlobalKey<ScaffoldState> key = new GlobalKey<ScaffoldState>();
   Function refresh;
   Order order;
   IO.Socket socket;
@@ -29,85 +30,45 @@ class RequestTotalOntroller{
     this.context = context;
     this.refresh = refresh;
     // order = Order.fromJson(ModalRoute.of(context).settings.arguments as Map<String, dynamic>);
-
-
     user = User.fromJson(await _sharedPref.read('user'));
-    socket = IO.io('http://${Environment.API_DELIVERY}/orders/status', <String, dynamic> {
-      'transports': ['websocket'],
-      'autoConnect': false
-    });
-
-    socket.connect();
-    int idStatusOrder =1;
-
-    // socket.on('status/${idStatusOrder}', (data) {
-    //   print('DATA EMITIDA: ${data}');
-    //   addStatus(data['statusOrder'],);
-    // });
-
-    print("SI ESTOY ENTRANDO AQUI....");
-    // user = User.fromJson(await _sharedPref.read('user'));
-    // _ordersProvider.init(context, user);
-    // print('ORDEN: ${order.toJson()}');
-    // checkGPS();
-
-    Map<String, dynamic> map = await _sharedPref.read('service');
-   // idClientSharedP = map['idClient'];
-    idAddressSharedP = map['id_address'];
-
-    latFromShared = map['lat'];
-    lngFromShared = map['lng'];
-    userid = user.id;
-    print("BENX $userid");
-    print("BENX $idAddressSharedP");
-    print("BENX $latFromShared");
-    print("BENX $lngFromShared");
-    emitOrder();
+    _ordersProvider.init(context, user);
   }
 
-  void emitOrder() {
-    socket.emit('status', {
-      'id_order': 1,
-      'statusOrder': "PETITION",
-      'idClient': userid,
-      'idAdress': idAddressSharedP,
-      'lat': latFromShared,
-      'lng': lngFromShared,
-    });
+  Future<List<Order>> getTotal(String status) async {
+
+    return await _ordersProvider.getTotalPerDay(user.id);
+    refresh();
   }
 
-  void dispose() {
-    socket?.disconnect();
+  void openDrawer() {
+    key.currentState.openDrawer();
+    refresh();
   }
 
-  //SEND OBJECT DATA TO SOKECT LISTENER
-  // void emitPosition() {
-  //   socket.emit('position', {
-  //     'id_order': order.id,
-  //     // 'lat': _position.latitude,
-  //     // 'lng': _position.longitude,
-  //   });
-  // }
+  void goToRoles() {
+    Navigator.pushNamedAndRemoveUntil(context, 'roles', (route) => false);
+    refresh();
+  }
 
-  // void addStatus(String status) {
-  //   print("ENTRE METODO ADD STATUS");
-  //   if(status=="ONWAY"){
-  //     print("Navego a siguiente pantalla");
-  //     Navigator.push(
-  //       context,
-  //       new MaterialPageRoute(
-  //         builder: (context) => new OnwayCleanerPage(),
-  //       ),
-  //     );
-  //
-  //     refresh();
-  //   }else{
-  //     print("Algo paso mal sigo en la pantalla");
-  //   }
-  //
-  //
-  // }
+  void goInicio() {
+    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/list', (route) => false);
+    refresh();
+  }
 
-
+  void goEntregado() {
+    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/entregado', (route) => false);
+    refresh();
+  }
+  void goCancelado() {
+    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/cancelado', (route) => false);
+    refresh();
+  }
+  void goGanancias() {
+    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/total', (route) => false);
+    refresh();
+  }
+  void logout() {
+    _sharedPref.logout(context, user.id);
+  }
 
 }

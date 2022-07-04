@@ -115,23 +115,28 @@ class DeliveryOrdersListController {
   }
 
   void goToRoles() {
-    Navigator.pushNamedAndRemoveUntil(context, 'roles', (route) => false);
+    //Navigator.pushNamedAndRemoveUntil(context, 'roles', (route) => false);
+    Navigator.pushNamed(context, 'roles');
     refresh();
   }
   void goInicio() {
-    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/list', (route) => false);
+    //Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/list', (route) => false);
+    Navigator.pushNamed(context, 'delivery/orders/list');
     refresh();
   }
   void goEntregado() {
-    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/entregado', (route) => false);
+    //Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/entregado', (route) => false);
+    Navigator.pushNamed(context, 'delivery/orders/entregado');
     refresh();
   }
   void goCancelado() {
-    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/cancelado', (route) => false);
+    //Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/cancelado', (route) => false);
+    Navigator.pushNamed(context, 'delivery/orders/cancelado');
     refresh();
   }
   void goGanancias() {
-    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/total', (route) => false);
+    //Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/total', (route) => false);
+    Navigator.pushNamed(context, 'delivery/orders/total');
     refresh();
   }
   void dispose() {

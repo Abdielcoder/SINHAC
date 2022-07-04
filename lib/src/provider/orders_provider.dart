@@ -70,6 +70,31 @@ class OrdersProvider {
     }
   }
 
+  Future<List<Order>> getTotalPerDay(String idDelivery) async {
+    try {
+      print('SESION TOKEN: ${sessionUser.sessionToken}');
+      Uri url = Uri.http(_url, '$_api/orders/deliveryEntregado/$idDelivery');
+      Map<String, String> headers = {
+        'Content-type': 'application/json',
+        'Authorization': sessionUser.sessionToken
+      };
+      final res = await http.get(url, headers: headers);
+
+      if (res.statusCode == 401) {
+        MySnackbar.show(context, 'Sesion expirada');
+        new SharedPref().logout(context, sessionUser.id);
+      }
+      final data = json.decode(res.body); // CATEGORIAS
+      Order order = Order.fromJsonList(data);
+      return order.toList;
+    }
+    catch(e) {
+      print('Error: $e');
+      return [];
+    }
+  }
+
+
   Future<List<Order>> getByClientAndStatus(String idClient, String status) async {
     try {
       print('SESION TOKEN: ${sessionUser.sessionToken}');
