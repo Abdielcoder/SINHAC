@@ -10,6 +10,8 @@ import 'package:lavador/src/models/user.dart';
 import 'package:lavador/src/utils/my_snackbar.dart';
 import 'package:lavador/src/utils/shared_pref.dart';
 
+import '../models/total.dart';
+
 class OrdersProvider {
 
   String _url = Environment.API_DELIVERY;
@@ -70,10 +72,10 @@ class OrdersProvider {
     }
   }
 
-  Future<List<Order>> getTotalPerDay(String idDelivery) async {
+  Future<List<Total>> getTotalPerDay(String idDelivery) async {
     try {
       print('SESION TOKEN: ${sessionUser.sessionToken}');
-      Uri url = Uri.http(_url, '$_api/orders/deliveryEntregado/$idDelivery');
+      Uri url = Uri.http(_url, '$_api/deliveryEntregado/$idDelivery');
       Map<String, String> headers = {
         'Content-type': 'application/json',
         'Authorization': sessionUser.sessionToken
@@ -85,8 +87,8 @@ class OrdersProvider {
         new SharedPref().logout(context, sessionUser.id);
       }
       final data = json.decode(res.body); // CATEGORIAS
-      Order order = Order.fromJsonList(data);
-      return order.toList;
+      Total total = Total.fromJsonList(data);
+      return total.toList;
     }
     catch(e) {
       print('Error: $e');

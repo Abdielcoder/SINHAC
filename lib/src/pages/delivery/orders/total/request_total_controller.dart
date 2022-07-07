@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import '../../../../api/environment.dart';
 import '../../../../models/order.dart';
+import '../../../../models/total.dart';
 import '../../../../models/user.dart';
 import '../../../../provider/orders_provider.dart';
 import '../../../../utils/shared_pref.dart';
@@ -32,43 +33,17 @@ class RequestTotalOntroller{
     // order = Order.fromJson(ModalRoute.of(context).settings.arguments as Map<String, dynamic>);
     user = User.fromJson(await _sharedPref.read('user'));
     _ordersProvider.init(context, user);
+    userid = user.id;
+    print('RESX : 0.0 $userid ');
   }
 
-  Future<List<Order>> getTotal(String status) async {
+  // Future<List<Total>> getTotal() async {
+  //
+  //   return await _ordersProvider.getTotalPerDay(user.id);
+  //   refresh();
+  // }
 
-    return await _ordersProvider.getTotalPerDay(user.id);
-    refresh();
-  }
 
-  void openDrawer() {
-    key.currentState.openDrawer();
-    refresh();
-  }
 
-  void goToRoles() {
-    Navigator.pushNamedAndRemoveUntil(context, 'roles', (route) => false);
-    refresh();
-  }
-
-  void goInicio() {
-    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/list', (route) => false);
-    refresh();
-  }
-
-  void goEntregado() {
-    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/entregado', (route) => false);
-    refresh();
-  }
-  void goCancelado() {
-    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/cancelado', (route) => false);
-    refresh();
-  }
-  void goGanancias() {
-    Navigator.pushNamedAndRemoveUntil(context, 'delivery/orders/total', (route) => false);
-    refresh();
-  }
-  void logout() {
-    _sharedPref.logout(context, user.id);
-  }
 
 }
